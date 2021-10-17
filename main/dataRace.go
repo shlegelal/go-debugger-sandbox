@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 /*
  * Data races are among the most common and hardest to debug types of bugs in concurrent systems.
@@ -13,14 +16,20 @@ import "fmt"
  */
 
 func main() {
-	c := make(chan bool)
 	m := make(map[string]string)
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+
 	go func() {
 		m["1"] = "a" // First conflicting access.
-		c <- true
+		wg.Done()
 	}()
+
 	m["2"] = "b" // Second conflicting access.
-	<-c
+
+	wg.Wait()
+
 	for k, v := range m {
 		fmt.Println(k, v)
 	}
