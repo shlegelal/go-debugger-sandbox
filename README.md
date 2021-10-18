@@ -12,13 +12,13 @@ Deadlock detection.
 _**Go**_ is able to detect deadlocks at runtime if one of the locked goroutines is
 main.
 
-- **singleDeadlock.go**
+- **channelDeadlock.go**
 
   Main goroutine self-deadlock with channel waiting.
 
   _**Go**_ detects this at runtime.
 
-- **crossDeadlock.go**
+- **crossChannelDeadlock.go**
 
   A classic deadlock example: two goroutines (one of which is main) lock each other waiting on two channels.
 
