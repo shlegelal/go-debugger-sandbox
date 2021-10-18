@@ -11,28 +11,29 @@ import (
  * and at least one of the accesses is a write.
  */
 
-/*
- * Here is an example of a data race that can lead to crashes and memory corruption:
- */
-
 func main() {
-	m := make(map[string]string)
+	n := 0
 
 	var wg sync.WaitGroup
 	wg.Add(1)
 
 	go func() {
-		m["1"] = "a" // First conflicting access.
+		// First conflicting access.
+		for i := 0; i < 1000000; i++ {
+			n++
+		}
+
 		wg.Done()
 	}()
 
-	m["2"] = "b" // Second conflicting access.
+	// Second conflicting access.
+	for i := 0; i < 1000000; i++ {
+		n++
+	}
 
 	wg.Wait()
 
-	for k, v := range m {
-		fmt.Println(k, v)
-	}
+	fmt.Println(n)
 }
 
 /*
