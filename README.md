@@ -11,7 +11,7 @@ Descriptions of code files containing the examples.
 Deadlock detection.
 _**Go**_ is able to detect deadlocks at runtime if one of the locked goroutines is main.
 
-- **channelDeadlock.go**
+- **channelSelfLock.go**
 
   Main goroutine self-deadlock with channel waiting.
 
@@ -19,8 +19,14 @@ _**Go**_ is able to detect deadlocks at runtime if one of the locked goroutines 
 
 - **crossChannelDeadlock.go**
 
-  A classic deadlock example: two goroutines (one of which is main) lock each other waiting on two channels.
+  Two goroutines (one of which is main) lock each other waiting on two channels.
 
+  _**Go**_ detects this at runtime.
+
+- **mutexSelfLock.go**
+
+  A classic deadlock example: main goroutine locks itself by locking a non-recursive mutex twice in a row.
+- 
   _**Go**_ detects this at runtime.
 
 - **crossMutexDeadlock.go**
@@ -30,7 +36,7 @@ _**Go**_ is able to detect deadlocks at runtime if one of the locked goroutines 
 
   _**Go**_ detects this at runtime.
 
-- **mutexDeadlock.go**
+- **mutexNoUnlock.go**
 
   One goroutine forgets to unlock a mutex making the other one wait on it forever and never complete.
 
