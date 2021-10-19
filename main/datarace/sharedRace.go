@@ -19,12 +19,12 @@ func (receiver Person) print() {
 	fmt.Printf("Name: %s\nSurname: %s\n", receiver.name, receiver.surname)
 }
 
-func main() {
-	var person Person
+var person Person
 
+func main() {
 	go person.fill("Pavel", "Durov")
 	time.Sleep(100 * time.Millisecond)
-	go person.fill("Elon", "Mask")
+	go person.fill("Elon", "Musk")
 
 	time.Sleep(410 * time.Millisecond)
 

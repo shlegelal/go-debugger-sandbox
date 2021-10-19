@@ -49,6 +49,6 @@ _**Go**_ is able to detect data races at runtime when built with a flag `-race`.
 
 - **sharedRace.go**
 
-  Two goroutines work with the same "double-parted" data causing a data race.
+  Two goroutines work with the same "two-parted" data causing a data race.
 
   _**Go**_ detects this at runtime.
