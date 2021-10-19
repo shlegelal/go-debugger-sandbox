@@ -52,3 +52,9 @@ _**Go**_ is able to detect data races at runtime when built with a flag `-race`.
   Two goroutines work with the same "two-parted" data causing a data race.
 
   _**Go**_ detects this at runtime.
+
+- **channelCloseRace.go**
+
+  Unsynchronized channel send and close operations leading to a panic -- it is also classified as a data race in _**Go**_.
+
+  _**Go**_ detects this at runtime.
