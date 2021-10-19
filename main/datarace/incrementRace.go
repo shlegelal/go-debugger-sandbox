@@ -39,5 +39,5 @@ func main() {
 /*
  * To help diagnose such bugs, Go includes a built-in data race detector.
  * To use it, add the -race flag to the go command:
-	$ go run -race dataRace.go
+	$ go run -race incrementRace.go
 */

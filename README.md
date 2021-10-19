@@ -41,8 +41,14 @@ _**Go**_ is able to detect deadlocks at runtime if one of the locked goroutines 
 Data race detection.
 _**Go**_ is able to detect data races at runtime when built with a flag `-race`.
 
-- **dataRace.go**
+- **incrementRace.go**
 
   Two goroutines increment the same `int` causing a data race.
+
+  _**Go**_ detects this at runtime.
+
+- **sharedRace.go**
+
+  Two goroutines work with the same "double-parted" data causing a data race.
 
   _**Go**_ detects this at runtime.
