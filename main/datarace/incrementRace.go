@@ -23,6 +23,6 @@ func main() {
 		go increment(&n, 1000000)
 	}
 
-	wg.Wait()
+	// wg.Wait()
 	fmt.Println(n)
 }

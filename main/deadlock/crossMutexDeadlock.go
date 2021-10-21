@@ -26,6 +26,6 @@ func main() {
 
 	fmt.Println("Doing stuff here...")
 
-	mutex2.Unlock()
 	mutex1.Unlock()
+	mutex2.Unlock()
 }

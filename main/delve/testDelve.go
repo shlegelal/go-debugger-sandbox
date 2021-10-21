@@ -20,8 +20,8 @@ func main() {
 	wg.Add(5)
 
 	for i := 0; i < 5; i++ {
-		doTask(i)
+		go doTask(i)
 	}
 
-	// wg.Wait()
+	wg.Wait()
 }

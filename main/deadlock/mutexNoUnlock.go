@@ -28,6 +28,6 @@ func main() {
 	go prettyPrint("water", &wg)
 	go prettyPrint("punk", &wg)
 
-	time.Sleep(5 * time.Second)
+	// time.Sleep(5 * time.Second)
 	// wg.Wait()
 }
