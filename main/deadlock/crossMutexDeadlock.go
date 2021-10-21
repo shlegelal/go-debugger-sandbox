@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -8,25 +9,22 @@ import (
 var mutex1 sync.Mutex
 var mutex2 sync.Mutex
 
-// Cross mutex deadlock
 func main() {
 	go func() {
 		mutex1.Lock()
 		mutex2.Lock()
 
-		// code
+		fmt.Println("Doing stuff here...")
 
 		mutex2.Unlock()
 		mutex1.Unlock()
 	}()
 
 	mutex2.Lock()
-
-	time.Sleep(time.Millisecond * 300)
-
+	time.Sleep(300 * time.Millisecond)
 	mutex1.Lock()
 
-	// code
+	fmt.Println("Doing stuff here...")
 
 	mutex2.Unlock()
 	mutex1.Unlock()

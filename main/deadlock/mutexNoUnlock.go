@@ -6,37 +6,28 @@ import (
 	"time"
 )
 
-/*
- * Programs that make heavy use of mutexes can, on the other hand, be notoriously difficult to debug.
- */
+var mutex sync.Mutex
 
-// Using the traditional "lock" to complete synchronization -- mutex
-var mutex sync.Mutex // Create a mutex (mutex), the new mutex state is 0 > not locked. There is only one lock
-func printer(str string) {
-	mutex.Lock() // Lock before accessing shared data
-	for _, s := range str {
-		fmt.Printf("%c ", s)
+func prettyPrint(str string, wg *sync.WaitGroup) {
+	// defer wg.Done()
+
+	mutex.Lock()
+
+	for _, char := range str {
+		fmt.Printf("%c ", char)
 		time.Sleep(time.Millisecond * 300)
 	}
-	mutex.Unlock() // Shared data access ends, unlock
-}
 
-func person1(group *sync.WaitGroup) {
-	//defer group.Done()
-	printer("hello")
-}
-
-func person2(group *sync.WaitGroup) {
-	//defer group.Done()
-	printer("world")
+	mutex.Unlock()
 }
 
 func main() {
 	var wg sync.WaitGroup
-	//wg.Add(2)
-	go person1(&wg)
-	go person2(&wg)
-	time.Sleep(5 * time.Second)
+	// wg.Add(2)
 
-	//wg.Wait()
+	go prettyPrint("water", &wg)
+	go prettyPrint("punk", &wg)
+
+	time.Sleep(5 * time.Second)
+	// wg.Wait()
 }

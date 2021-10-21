@@ -5,7 +5,9 @@ import "time"
 func main() {
 	ch := make(chan int)
 
-	go func() { ch <- 17 }()
+	go func() {
+		ch <- 17
+	}()
 
 	close(ch)
 
